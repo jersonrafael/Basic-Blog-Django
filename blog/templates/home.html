@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block tittle%}
+    Blog
+{%endblock%}
+
+
+{% block contend%}
+
+<header class='my-2'>
+    <ul class="flex items-center justify-center flex-wrap">
+        {% if request.user.is_authenticated%}
+            <li class="my-2 mx-2">
+                <a href="profile/{{user.id}}" class="text-white sm:text-2xl" >My Profile</a>
+            </li>
+            <li class="sm:my-4 sm:mx-2 bg-orange-500 py-1 px-2 rounded-lg">
+                <a href="{% url 'createPost'%}" class="text-white sm:text-2xl">Create Post</a>
+            </li>
+            <li>
+                <div class="mx-4">
+                    <a class="text-white sm:text-2xl">{{user}}</a>
+                    <a href="{% url 'logOut' %}" class="text-white bg-orange-500 py-1 px-2 rounded-lg">LogOut</a>
+                </div>
+            </li>
+        {% else %}
+            <li class="my-4">
+                <a href="{% url 'login'%}" class="text-white">Iniciar Session</a>
+                <a href="{% url 'register'%}" class="text-white mx-2 bg-orange-500 py-1 px-2 rounded-lg">Create Account</a>
+            </li>
+        {% endif %}
+    </ul>
+    
+</header>
+
+<div class="">
+    {% for x in post %}
+    <div class="flex justify-center items-center flex-wrap">
+        <div class="bg-gray-900 my-2 mx-2 py-4 px-8 text-1xl sm:w-2/4">
+            <h3 class="text-white">Created By: {{x.postCreator.username}} </h3>
+            <h2 class="text-white">{{x.postName}} </h2>
+            <h2 class="text-white">{{x.postDescript}} </h2>
+            <p class="text-white my-2"> {{x.dateCreate}} </p>
+            <a href="post/{{x.id}}" class="text-white bg-orange-500 py-1 px-2 rounded-lg">Read More</a>
+        </div>
+    </div>
+{%endfor%}
+</div>
+
+{%endblock%}

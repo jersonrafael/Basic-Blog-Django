@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block tittle%}
+    Post
+{%endblock%}
+
+
+{% block contend%}
+<div class="my-4 mx-4">
+    <a href=" {% url 'home' %} " class="bg-yellow-600 px-4 py-2 rounded-lg">Back</a>
+</div>
+<div class="flex justify-center my-40">
+    <div class="w-2/4 bg-gray-900 py-4 px-10">
+        {% for x in post%}
+            <h3 class="sm:text-4xl">Post Created By: {{x.postCreator}}</h3>
+            <h1 class="sm:text-2xl">{{x.postName}}</h1>
+            <h2 class="sm:text-2xl">{{x.postDescript}}</h2>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}

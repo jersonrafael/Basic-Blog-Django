@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{%block tittle%}
+    Login
+{%endblock%}
+
+{%block contend%}
+<header>
+    <nav class="my-2 mx-2 bg-orange-500 py-1 px-4 rounded-lg w-14 flex justify-center">
+        <a href="{% url 'home' %}">Back</a>
+    </nav>
+</header>
+<h1 class="text-center my-2 text-6xl text-white">Login</h1>
+    <div class="flex items-center justify-center bg-gray-900 my-52 py-4 px-2 mx-2">
+        <div class="flex justify-center flex-wrap">
+            <h2>{{error}}</h2>
+            <form action="" method="POST">
+                {%csrf_token%}
+                {{form}}
+                <br>
+                <button type="submit" class="text-white my-2 bg-orange-500 py-1 px-4 rounded-lg">Login</button>
+            </form>
+        </div>
+    </div>
+{%endblock%}

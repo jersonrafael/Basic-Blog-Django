@@ -1,0 +1,23 @@
+p{
+    padding: 1rem;
+    color: white;
+    
+}
+
+label{
+    color: white;
+}
+
+input{
+    border:none;
+    outline: none;
+    border: 1px solid orange;
+
+    color: black;
+}
+
+ul{
+    margin: 0rem 1rem;
+    text-align: center;
+    color: orange;
+}

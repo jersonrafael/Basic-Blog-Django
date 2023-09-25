@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{%block tittle%}
+    Create Post
+{%endblock%}
+
+{%block contend%}
+<a href="{%url 'home'%}">Home</a>
+<h2>My posts</h2>
+ <a href="{% url 'createPost'%}">Create Post</a>
+{% for x in post%}        
+        <div>
+            <h2>{{x.postName}} </h2>
+            <h2>{{x.postDescript}} </h2>
+            <p> {{x.dateCreate}} </p>
+        </div>
+    {%endfor%}
+{%endblock%}

@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{%block tittle%}
+Register
+{%endblock%}
+
+
+{%block contend%}
+<div class="my-4 mx-4">
+    <a href="{% url 'home'%}" class="bg-orange-500 py-1 px-2 rounded-lg">Back</a>
+</div>
+    <div class="flex justify-center my-20 bg-gray-900">
+        <div>
+            <h2>{{error}}</h2>
+            <form action="" method="POST">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit" class="my-10 bg-orange-500 py-1 px-2 rounded-lg">Create Account</button>
+            </form>
+        </div>
+    </div>
+{%endblock%}
