@@ -1,5 +1,5 @@
 from django.db import IntegrityError
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.contrib.auth.decorators import login_required
@@ -61,6 +61,18 @@ def post(request,pk):
     }
     return HttpResponse(template.render(context,request))
 
+@login_required
+def deletepost(request,pk):
+    user = request.user
+    post = get_object_or_404(Post, pk=pk)
+    if post:
+        post.delete()
+        # return redirect(f'profile/{id}')
+        return redirect(f'/profile/{user.id}')
+    else:
+        return HttpResponse(f'Post {pk} Not Found')
+
+
 def login_view(request):
     if request.method == 'POST':
         template = get_template('login.html')
@@ -113,9 +125,8 @@ def profile(request,pk):
     template = get_template('myprofile.html')
     find = User.objects.filter(id=pk)
     post = Post.objects.filter(postCreator=pk)
-    print()
     context = {
-        "user":find,
+        "user":request.user,
         "post":post
     }
     return HttpResponse(template.render(context,request))
